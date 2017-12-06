@@ -35,7 +35,6 @@ void part_two() {
 
 
 int main() {
-	// 19455531 too low
 	part_one();
 	return 0;
 }

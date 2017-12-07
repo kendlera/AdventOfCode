@@ -31,8 +31,6 @@ void part_one() {
         myfile.close();
     }
     int num_registers = registers.size();
-    cout << num_registers << " registers ready\n";
-    string target = "1 0 14 14 12 12 10 10 8 8 6 6 4 3 2 1 ";
     int cycles = 0;
     std::vector<int>::iterator max;
     set<string> states;

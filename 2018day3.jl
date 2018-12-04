@@ -26,6 +26,7 @@ function processCutRequests(puzzInput::String)
 			end
 		end
 	end
+	println(total)
 	return total
 end
 
@@ -62,5 +63,6 @@ function findSafePattern(puzzInput::String)
 			push!(valid, id)
 		end
 	end
+	println(valid)
 	return valid
 end

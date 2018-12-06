@@ -38,7 +38,7 @@ function findSleepiestGuard(reports::Array)
 	return orderedSleepy
 end
 
-function findMostSleptTime(reports::Array, chosenGuard::SubString)
+function findMostSleptTime(reports::Array, chosenGuard::String)
 	times = zeros(Int64, 60)
 	count = false
 	start = 0
@@ -60,3 +60,7 @@ function findMostSleptTime(reports::Array, chosenGuard::SubString)
 	println(chosenGuard, " slept ", max_val, " on minute ", index)
 	return index
 end
+
+g = findSleepiestGuard(sortReport(readInput("/Users/akendler/Documents/personal/AdventofCode/input.txt")))
+println(g)
+findMostSleptTime(sortReport(readInput("/Users/akendler/Documents/personal/AdventofCode/input.txt")), "#2593")

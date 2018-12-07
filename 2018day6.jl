@@ -21,7 +21,7 @@ function growField(field, coords)
 	xlen, ylen = size(field)
 	while "#" in field
 		other_tag =  ":" * string(dist)
-		println("Round ", dist)
+		# println("Round ", dist)
 		for x=1:length(coords)
 			tag = ("+" * string(x) * other_tag)
 			offset = 0 # we use this to do diagonals
@@ -107,7 +107,7 @@ function growField(field, coords)
 		# println(tag)
 		area = length(findall(x->occursin(tag, x), field))
 		push!(pairwise, [x, area])
-		println("Coordinate ", x, " grew to an area of ", area)
+		# println("Coordinate ", x, " grew to an area of ", area)
 	end
 	println(sort!(pairwise, by = x->x[2], rev=true))
 end
@@ -127,10 +127,46 @@ function populateField(puzzInput::String)
 		push!(adjusted_coords, [coords[x][1]-(minx), coords[x][2]-(miny)])
 	end
 	growField(field, adjusted_coords)
+	return adjusted_coords
 end
 
 function getDist(coord1, coord2)
 	return abs(coord1[1] - coord2[1]) + abs(coord1[2] - coord2[2])
 end
 
-@time populateField(readInput("/Users/akendler/Documents/personal/AdventofCode/input.txt"))
+function isPointValid(point, coords)
+	total = 0
+	for c in coords
+		total += getDist(point, c)
+	end
+	return (total < 10000)
+end
+
+function findCenterArea(coords)
+	# first lets find the centroid
+	xval = 0
+	yval = 0
+	# the original field was too small, make it bigger...
+	field = fill("#", 500, 500)
+	for c=1:length(coords)
+		xval += coords[c][1]
+		yval += coords[c][2]
+	end
+	xval = div(xval, length(coords))
+	yval = div(yval, length(coords))
+	center = [xval, yval]
+	points = [center]
+	xlen, ylen = size(field)
+	total = 0
+	for x=1:xlen
+		for y=1:ylen
+			if isPointValid([x, y], coords)
+				total += 1
+			end
+		end
+	end
+	println(total)
+end
+
+@time coords = populateField(readInput(filename))
+@time findCenterArea(coords)

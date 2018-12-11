@@ -27,8 +27,12 @@ function fillField(xlim, ylim)
 		end
 	end
 	for x=4:300
-		println("Square Size ", x, ": ", scoreSquares(field, x))
+		ans = scoreSquares(field, x)
+		println("Square Size ", x, ": ", ans)
+		if ans[1] < 0
+			return
+		end
 	end
 end
 
-fillField(300, 300)
+@time fillField(300, 300)

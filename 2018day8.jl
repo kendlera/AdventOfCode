@@ -35,17 +35,11 @@ function constructTree(data, expected)
 			item.children = nodeChildren
 			x += numConsumed
 		end
-		# println(data)
-		# println("Evalutating ", item, " new index at ", x)
 		item.metadata = data[x:x+(item.num_metadata-1)]
-		# print(x, " plus ", item.num_metadata, ": ")
 		x += item.num_metadata 
-		# println(x)
-		# println(item)
 		push!(nodesChildren, item)
 		done = (expected == length(nodesChildren))
 	end
-	# println("Returning ", nodesChildren, " and consumed ", x)
 	return nodesChildren, x-1
 end
 
@@ -84,6 +78,6 @@ function calculateValues(tree)
 	return tree
 end
 
-# println(constructTree(parseInput(readInput(filename)), 1)[1][1])
+# println(sumMetadata(constructTree(parseInput(readInput(filename)), 1)[1][1]))
 # println(calculateValues(constructTree(parseInput(readInput(filename)), 1)[1][1]))
 

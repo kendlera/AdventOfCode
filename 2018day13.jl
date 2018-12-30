@@ -38,8 +38,10 @@ function parseInput(filename)
 					elseif pathPresent[3] && pathPresent[4]
 						token = "-"
 					elseif (pathPresent[1] && pathPresent[4]) || (pathPresent[2] && pathPresent[3])
+						println("Non Standard Token! \\")
 						token = "\\" 
 					elseif (pathPresent[1] && pathPresent[3]) || (pathPresent[2] && pathPresent[4])
+						println("Non Standard Token! /")
 						token = "/"
 					else
 						println(pathPresent)
@@ -126,6 +128,7 @@ function pushCarts(rails, carts)
 	end
 end
 
+filename = "/Users/akendler/Documents/personal/AdventofCode/input.txt"
 rails, carts = parseInput(filename)
 pushCarts(rails, carts)
 
